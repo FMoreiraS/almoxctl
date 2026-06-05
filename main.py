@@ -1,7 +1,8 @@
 class Product:
-    def __init__(self, name, quantity_stored):
+    def __init__(self, name, quantity, date):
         self.name = name
-        self.quantity_stored = quantity_stored
+        self.quantity_stored = quantity
+        self.date_of_entry = date
 
 # Product inputs and outputs can be reduced to the same class. Output, however,
 # must have a few extra attributes.
