@@ -7,21 +7,13 @@ class Product:
 # must have a few extra attributes.
 class Movement:
 
-    # Builder for inputs
-    def __init__(self, date, product_name, quantity):
-        self.type = True
-        self.date = date
+    # We can use optional parameters to define unique parameters of the outputs.
+    def __init__(self, product_name, quantity, date, type=True, responsible=None):
         self.product_name = product_name
         self.quantity = quantity
-
-    # Builder for outputs
-    @overload
-    def __init__(self, type, responsible, date, product_name, quantity):
+        self.date = date
         self.type = type
-        self.date = date
         self.responsible = responsible
-        self.product_name = product_name
-        self.quantity = quantity
 
 if __name__ == '__main__':
     print('BEM-VINDO AO ALMOXCTL')
