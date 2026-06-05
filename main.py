@@ -19,6 +19,7 @@ class Movement:
 class Main:
     @staticmethod
     def main():
+        stored_products = []
         print('BEM-VINDO AO ALMOXCTL')
     
         while True:
@@ -47,16 +48,40 @@ class Main:
                 case 5:
                     print('Programa encerrado')
                     break
-                case _:
-                    print('Opção inválida')
+                # case _:
+                #     print('Opção inválida')
 
     @staticmethod
-    def addProduct():
-        print('Produto adicionado com sucesso')
+    def addProduct(stored_products: list[Product]):
+        if len(stored_products) > 0:
+            option = input('Deseja adicionar um produto já existente?(s/n) ')
+            if option == 's' or option == 'S':
+                Main.showProducts(stored_products)
+            print('Produto adicionado com sucesso\n')
+        
+        product_name = input('Digite o nome do produto que será adicionado: ')
+        quantity = input('Digite a quantidade a ser adicionada: ')
+        entry_date = input('Digite a data da inserção do produto: ')
+        product_added = Product(product_name, quantity, entry_date)
+        stored_products.append(product_added)
+        print('Produto adicionado com sucesso\n')
+
 
     @staticmethod
     def removeProduct():
         print('Produto removido com sucesso')
+
+    @staticmethod
+    def showProducts(products: list):
+        if len(products) > 0:
+            print('Produtos em estoque')
+            for p in products:
+                print(f'{p.quantity_stored} | {p.name}')
+                # print('-' * 20)
+                # print(p.name)
+                # print(p.quantity_stored)
+        else:
+            print('Não há produtos em estoque')
 
 if __name__ == '__main__':
     Main.main()
