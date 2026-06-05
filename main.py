@@ -4,7 +4,7 @@ class Product:
         self.quantity_stored = quantity
         self.date_of_entry = date
 
-    def setQuantity(self, newQuantity):
+    def set_quantity(self, newQuantity):
         self.quantity_stored = newQuantity
 
 # Product inputs and outputs can be reduced to the same class. Output, however,
@@ -41,12 +41,12 @@ class Main:
 
             match option:
                 case 1:
-                    if Main.addProduct(stored_products):
+                    if Main.add_product(stored_products):
                         print('Produto adicionado com sucesso\n')
                     else:
                         print('Ocorreu um erro na inserção do produto')
                 case 2:
-                    Main.removeProduct()
+                    Main.remove_product()
                 case 3:
                     pass
                 case 4:
@@ -58,11 +58,11 @@ class Main:
                 #     print('Opção inválida')
 
     @staticmethod
-    def addProduct(stored_products: list[Product]):
+    def add_product(stored_products: list[Product]):
         if len(stored_products) > 0:
             option = input('Deseja adicionar um produto já existente?(s/n) ')
             if option == 's' or option == 'S':
-                Main.showProducts(stored_products)
+                Main.show_products(stored_products)
                 product_modified = None
                 product_name = input('Digite o nome do produto que será adicionado: ')
                 for p in stored_products:
@@ -71,7 +71,7 @@ class Main:
                 if product_modified == None: return False
                 quantity = input('Digite a quantidade a ser adicionada: ')
                 new_quantity = product_modified.quantity_stored + quantity
-                product_modified.setQuantity(new_quantity)
+                product_modified.set_quantity(new_quantity)
                 return True
 
             print('Produto adicionado com sucesso\n')
@@ -85,11 +85,11 @@ class Main:
 
 
     @staticmethod
-    def removeProduct():
+    def remove_product():
         print('Produto removido com sucesso')
 
     @staticmethod
-    def showProducts(products: list):
+    def show_products(products: list):
         if len(products) > 0:
             print('Produtos em estoque')
             for p in products:
