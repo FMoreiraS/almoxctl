@@ -4,6 +4,9 @@ class Product:
         self.quantity_stored = quantity
         self.date_of_entry = date
 
+    def setQuantity(self, newQuantity):
+        self.quantity_stored = newQuantity
+
 # Product inputs and outputs can be reduced to the same class. Output, however,
 # must have a few extra attributes.
 class Movement:
