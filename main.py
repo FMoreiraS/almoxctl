@@ -41,7 +41,10 @@ class Main:
 
             match option:
                 case 1:
-                    Main.addProduct()
+                    if Main.addProduct(stored_products):
+                        print('Produto adicionado com sucesso\n')
+                    else:
+                        print('Ocorreu um erro na inserção do produto')
                 case 2:
                     Main.removeProduct()
                 case 3:
@@ -60,6 +63,17 @@ class Main:
             option = input('Deseja adicionar um produto já existente?(s/n) ')
             if option == 's' or option == 'S':
                 Main.showProducts(stored_products)
+                product_modified = None
+                product_name = input('Digite o nome do produto que será adicionado: ')
+                for p in stored_products:
+                    if p.name == product_name:
+                        product_modified = p
+                if product_modified == None: return False
+                quantity = input('Digite a quantidade a ser adicionada: ')
+                new_quantity = product_modified.quantity_stored + quantity
+                product_modified.setQuantity(new_quantity)
+                return True
+
             print('Produto adicionado com sucesso\n')
         
         product_name = input('Digite o nome do produto que será adicionado: ')
