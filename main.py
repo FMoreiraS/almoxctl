@@ -41,10 +41,7 @@ class Main:
 
             match option:
                 case 1:
-                    if Main.add_product(stored_products):
-                        print('Produto adicionado com sucesso\n')
-                    else:
-                        print('Ocorreu um erro na inserção do produto')
+                    print(Main.add_product(stored_products))
                 case 2:
                     print(Main.remove_product(stored_products))
                 case 3:
@@ -64,26 +61,24 @@ class Main:
             if option == 's' or option == 'S':
                 Main.show_products(stored_products)
                 product_modified = None
-                product_name = input('Digite o nome do produto que será adicionado: ')
+                product_name = input('Digite o nome do produto que será adicionado:')
                 for p in stored_products:
                     if p.name == product_name:
                         product_modified = p
-                if product_modified == None: return False
-                # quantity = input('Digite a quantidade a ser adicionada: ')
+                if product_modified == None: return 'O produto indicado não está no estoque\n'
                 print('Digite a quantidade a ser adicionada:')
                 quantity = Main.validate_quantity()
                 new_quantity = product_modified.quantity_stored + quantity
                 product_modified.set_quantity(new_quantity)
-                return True
+                return 'Produto adicionado com sucesso'
         
         product_name = input('Digite o nome do produto que será adicionado: ')
-        # quantity = input('Digite a quantidade a ser adicionada: ')
         print('Digite a quantidade a ser adicionada:')
         quantity = Main.validate_quantity()
         entry_date = input('Digite a data da inserção do produto: ')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
-        return True
+        return 'Produto adicionado com sucesso'
 
 
     @staticmethod
