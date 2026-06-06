@@ -46,7 +46,7 @@ class Main:
                     else:
                         print('Ocorreu um erro na inserção do produto')
                 case 2:
-                    Main.remove_product()
+                    print(Main.remove_product(stored_products))
                 case 3:
                     pass
                 case 4:
