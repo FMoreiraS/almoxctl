@@ -87,8 +87,24 @@ class Main:
 
 
     @staticmethod
-    def remove_product():
-        print('Produto removido com sucesso')
+    def remove_product(stored_products: list):
+        if len(stored_products) > 0:
+            Main.show_products(stored_products)
+            print('Digite o nome de um dos produtos em estoque para removê-lo')
+            product_to_remove = None
+            product_name = input()
+            for p in stored_products:
+                if p.name == product_name: product_to_remove = p
+            if product_to_remove == None: return 'O produto indicado não está no estoque\n'
+            current_quantity = product_to_remove.quantity_stored
+            print('Digite a quantidade que deseja remover')
+            quantity_to_remove = Main.validate_quantity()
+            if quantity_to_remove > current_quantity:
+                return 'A quantidade em estoque é menor que a solicitada\n'
+            product_to_remove.set_quantity(current_quantity - quantity_to_remove)
+            return 'Produto removido com sucesso\n'
+        else:
+            return 'Não há produtos no estoque\n'
 
     @staticmethod
     def show_products(products: list):
