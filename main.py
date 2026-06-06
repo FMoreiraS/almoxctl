@@ -69,13 +69,17 @@ class Main:
                     if p.name == product_name:
                         product_modified = p
                 if product_modified == None: return False
-                quantity = input('Digite a quantidade a ser adicionada: ')
+                # quantity = input('Digite a quantidade a ser adicionada: ')
+                print('Digite a quantidade a ser adicionada:')
+                quantity = Main.validate_quantity()
                 new_quantity = product_modified.quantity_stored + quantity
                 product_modified.set_quantity(new_quantity)
                 return True
         
         product_name = input('Digite o nome do produto que será adicionado: ')
-        quantity = input('Digite a quantidade a ser adicionada: ')
+        # quantity = input('Digite a quantidade a ser adicionada: ')
+        print('Digite a quantidade a ser adicionada:')
+        quantity = Main.validate_quantity()
         entry_date = input('Digite a data da inserção do produto: ')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
@@ -98,6 +102,17 @@ class Main:
                 # print(p.quantity_stored)
         else:
             print('Não há produtos em estoque')
+
+    @staticmethod
+    def validate_quantity():
+        quantity = 0
+        while not quantity >= 1:
+            try:
+                quantity = int(input())
+                return quantity
+            except ValueError:
+                print('Quantidade inválida')
+
 
 if __name__ == '__main__':
     Main.main()
