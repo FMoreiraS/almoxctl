@@ -45,7 +45,7 @@ class Main:
                 case 2:
                     print(Main.remove_product(stored_products))
                 case 3:
-                    pass
+                    Main.show_products(stored_products)
                 case 4:
                     pass
                 case 5:
@@ -108,9 +108,8 @@ class Main:
             print('PRODUTOS EM ESTOQUE')
             for p in products:
                 print(f'{p.quantity_stored} | {p.name}')
-                # print('-' * 20)
-                # print(p.name)
-                # print(p.quantity_stored)
+                if p == products[len(products) - 1]:
+                    print()
         else:
             print('Não há produtos em estoque')
 
