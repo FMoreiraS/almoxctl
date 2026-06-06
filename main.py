@@ -73,15 +73,13 @@ class Main:
                 new_quantity = product_modified.quantity_stored + quantity
                 product_modified.set_quantity(new_quantity)
                 return True
-
-            print('Produto adicionado com sucesso\n')
         
         product_name = input('Digite o nome do produto que será adicionado: ')
         quantity = input('Digite a quantidade a ser adicionada: ')
         entry_date = input('Digite a data da inserção do produto: ')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
-        print('Produto adicionado com sucesso\n')
+        return True
 
 
     @staticmethod
@@ -91,7 +89,8 @@ class Main:
     @staticmethod
     def show_products(products: list):
         if len(products) > 0:
-            print('Produtos em estoque')
+            print('-' * 20)
+            print('PRODUTOS EM ESTOQUE')
             for p in products:
                 print(f'{p.quantity_stored} | {p.name}')
                 # print('-' * 20)
