@@ -137,11 +137,10 @@ class Main:
             print('-' * 20)
             print('PRODUTOS EM ESTOQUE')
             for p in products:
-                print(f'{p.quantity_stored} | {p.name}')
-                if p == products[len(products) - 1]:
-                    print()
+                print(f'{p.quantity_stored} | {p.date_of_entry} | {p.name}')
+                if p == products[len(products) - 1]: print()
         else:
-            print('Não há produtos em estoque')
+            print('Não há produtos em estoque\n')
 
     @staticmethod
     def show_stock_movements(movements: list):
