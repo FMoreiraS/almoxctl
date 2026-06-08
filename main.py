@@ -47,7 +47,7 @@ class Main:
                 case 3:
                     Main.show_products(stored_products)
                 case 4:
-                    pass
+                    Main.show_stock_movements(stock_movements)
                 case 5:
                     print('Programa encerrado')
                     break
@@ -122,6 +122,21 @@ class Main:
                     print()
         else:
             print('Não há produtos em estoque')
+
+    @staticmethod
+    def show_stock_movements(movements: list):
+        if len(movements) > 0:
+            print('-' * 20)
+            print('MOVIMENTAÇÕES NO ESTOQUE')
+            for m in movements:
+                # Ternary operator returns a textual value of movement's type
+                # because the attribute is a boolean value
+                type = 'entrada' if m.type else ' saída '
+
+                print(f'{m.date} | {type} | {m.responsible} | {m.product_name} | {m.quantity}')
+                if m == movements[len(movements) - 1]: print()
+        else:
+            print('Não foram feitas movimentações no estoque')
 
     @staticmethod
     def validate_quantity():
