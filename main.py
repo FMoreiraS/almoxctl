@@ -7,15 +7,17 @@ class Product:
     def set_quantity(self, newQuantity):
         self.quantity_stored = newQuantity
 
-# Product inputs and outputs can be reduced to the same class. Output, however,
+# Product entries and exits can be reduced to the same class. Exits, however,
 # must have a few extra attributes.
+# We can use optional parameters to define unique attributes of the stock exits.
 class Movement:
-
-    # We can use optional parameters to define unique parameters of the outputs.
     def __init__(self, product_name, quantity, date, type=True, responsible=None):
         self.product_name = product_name
         self.quantity = quantity
         self.date = date
+        # Type in a stock movement can only be entry or exits, so a boolean value
+        # can be used to symplify the storage of the field.
+        # True = entry; False = exit
         self.type = type
         self.responsible = responsible
 
@@ -23,6 +25,7 @@ class Main:
     @staticmethod
     def main():
         stored_products = []
+        stock_movements = []
         print('BEM-VINDO AO ALMOXCTL')
     
         while True:
