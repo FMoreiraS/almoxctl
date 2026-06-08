@@ -24,10 +24,12 @@ class Movement:
         self.responsible = responsible
 
 class Main:
+    global stored_products
+    stored_products = []
+    global stock_movements
+    stock_movements = []
     @staticmethod
     def main():
-        stored_products = []
-        stock_movements = []
         print('BEM-VINDO AO ALMOXCTL')
     
         while True:
@@ -90,6 +92,7 @@ class Main:
         entry_date = datetime.today().strftime('%d/%m/%Y')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
+        Main.add_movement(stock_movements, product_name, quantity)
         return success_msg
 
 
@@ -113,6 +116,7 @@ class Main:
             if quantity_to_remove > current_quantity:
                 return 'A quantidade em estoque é menor que a solicitada\n'
             product_to_remove.set_quantity(current_quantity - quantity_to_remove)
+            Main.add_movement(stock_movements, product_name, quantity_to_remove, False)
             return 'Produto removido com sucesso\n'
         else:
             return 'Não há produtos no estoque\n'
