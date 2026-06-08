@@ -124,7 +124,7 @@ class Main:
 
     @staticmethod
     def add_movement(movement_list: list, product_name, quantity, type=True):
-        responsible_name = 'Padrão'
+        responsible_name = ' '
         if type == False:
             print('Digite o nome do responsável pela retirada:')
             responsible_name = input()
@@ -154,7 +154,7 @@ class Main:
                 # because the attribute is a boolean value
                 type = 'entrada' if m.type else ' saída '
 
-                print(f'{m.date} | {type} | {m.responsible} | {m.product_name} | {m.quantity}')
+                print(f'{m.date} | {type} | {m.quantity} | {m.product_name} | {m.responsible}')
                 if m == movements[len(movements) - 1]: print()
         else:
             print('Não foram feitas movimentações no estoque')
