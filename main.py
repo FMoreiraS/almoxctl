@@ -115,6 +115,8 @@ class Main:
             quantity_to_remove = Main.validate_quantity()
             if quantity_to_remove > current_quantity:
                 return 'A quantidade em estoque é menor que a solicitada\n'
+            elif quantity_to_remove == current_quantity:
+                stored_products.remove(product_to_remove)
             product_to_remove.set_quantity(current_quantity - quantity_to_remove)
             Main.add_movement(stock_movements, product_name, quantity_to_remove, False)
             return 'Produto removido com sucesso\n'
