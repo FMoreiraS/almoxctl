@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Product:
     def __init__(self, name, quantity, date):
         self.name = name
@@ -59,29 +61,36 @@ class Main:
 
     @staticmethod
     def add_product(stored_products: list[Product]):
+        success_msg = 'Produto adicionado com sucesso\n'
+        # If there is any product in stock, the user can add more of it.
         if len(stored_products) > 0:
             option = input('Deseja adicionar um produto já existente?(s/n) ')
             if option == 's' or option == 'S':
                 Main.show_products(stored_products)
                 product_modified = None
                 product_name = input('Digite o nome do produto que será adicionado:')
+                # Ensuring the product exists in stock
                 for p in stored_products:
                     if p.name == product_name:
                         product_modified = p
                 if product_modified == None: return 'O produto indicado não está no estoque\n'
+                
                 print('Digite a quantidade a ser adicionada:')
                 quantity = Main.validate_quantity()
                 new_quantity = product_modified.quantity_stored + quantity
                 product_modified.set_quantity(new_quantity)
-                return 'Produto adicionado com sucesso'
+                return success_msg
         
         product_name = input('Digite o nome do produto que será adicionado: ')
         print('Digite a quantidade a ser adicionada:')
         quantity = Main.validate_quantity()
-        entry_date = input('Digite a data da inserção do produto: ')
+        # If the entry date of a product is not the same as the time of registration
+        # in the system, the user could enter the date manually, this way:
+        # entry_date = input('Digite a data da inserção do produto: ')
+        entry_date = datetime.today().strftime('%d/%m/%Y')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
-        return 'Produto adicionado com sucesso'
+        return success_msg
 
 
     @staticmethod
