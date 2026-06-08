@@ -124,8 +124,10 @@ class Main:
 
     @staticmethod
     def add_movement(movement_list: list, product_name, quantity, type=True):
-        print(f'Digite o nome do responsável pela {type}')
-        responsible_name = input()
+        responsible_name = 'Padrão'
+        if type == False:
+            print('Digite o nome do responsável pela retirada:')
+            responsible_name = input()
         # Stock movements will receive the date of the moment the movements are made.
         current_date = datetime.today().strftime('%d/%m/%Y')
         movement_to_add = Movement(product_name, quantity, current_date, type, responsible_name)
