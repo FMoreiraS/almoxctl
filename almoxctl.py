@@ -25,6 +25,8 @@ class Movement:
         self.responsible = responsible
 
 class Main:
+    # It is useful to create these lists as global variables to reduce function
+    # parameters, since the lists are needed in many places
     global stored_products
     stored_products = []
     global stock_movements
@@ -61,7 +63,7 @@ class Main:
                     break
 
     @staticmethod
-    def add_product(stored_products: list[Product]):
+    def add_product():
         success_msg = 'Produto adicionado com sucesso\n'
 
         # If there is any product in stock, the user can add more of it.
@@ -96,7 +98,7 @@ class Main:
 
 
     @staticmethod
-    def remove_product(stored_products: list):
+    def remove_product():
         if len(stored_products) > 0:
             product_to_remove = None
 
@@ -124,7 +126,7 @@ class Main:
 
     # Records product inputs and outputs on a list for future audits
     @staticmethod
-    def add_movement(movement_list: list, product_name, quantity, type=True):
+    def add_movement(product_name, quantity, type=True):
         responsible_name = ' '
         if type == False:
             print('Digite o nome do responsável pela retirada:')
@@ -132,17 +134,17 @@ class Main:
         # Stock movements will receive the date of the moment the movements are made.
         current_date = datetime.today().strftime('%d/%m/%Y')
         movement_to_add = Movement(product_name, quantity, current_date, type, responsible_name)
-        movement_list.append(movement_to_add)
+        stock_movements.append(movement_to_add)
 
     # Shows a list of products in stock at the moment
     @staticmethod
-    def show_products(products: list):
-        if len(products) > 0:
+    def show_products():
+        if len(stored_products) > 0:
             print('-' * 20)
             print('PRODUTOS EM ESTOQUE')
-            for p in products:
+            for p in stored_products:
                 print(f'{p.quantity_stored} | {p.date_of_entry} | {p.name}')
-                if p == products[len(products) - 1]: print()
+                if p == stored_products[len(stored_products) - 1]: print()
         else:
             print('Não há produtos em estoque\n')
 
