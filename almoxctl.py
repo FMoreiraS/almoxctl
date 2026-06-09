@@ -70,7 +70,7 @@ class Main:
         if len(stored_products) > 0:
             option = input('Deseja adicionar um produto já existente?(s/n) ')
             if option == 's' or option == 'S':
-                Main.show_products(stored_products)
+                Main.show_products()
                 product_modified = None
                 product_name = input('Digite o nome do produto que será adicionado:')
                 
@@ -93,7 +93,7 @@ class Main:
         entry_date = datetime.today().strftime('%d/%m/%Y')
         product_added = Product(product_name, quantity, entry_date)
         stored_products.append(product_added)
-        Main.add_movement(stock_movements, product_name, quantity)
+        Main.add_movement(product_name, quantity)
         return success_msg
 
 
@@ -102,7 +102,7 @@ class Main:
         if len(stored_products) > 0:
             product_to_remove = None
 
-            Main.show_products(stored_products)
+            Main.show_products()
             print('Digite o nome de um dos produtos em estoque para removê-lo')
             product_name = input()
 
@@ -119,7 +119,7 @@ class Main:
                 stored_products.remove(product_to_remove)
             
             product_to_remove.set_quantity(current_quantity - quantity_to_remove)
-            Main.add_movement(stock_movements, product_name, quantity_to_remove, False)
+            Main.add_movement(product_name, quantity_to_remove, False)
             return 'Produto removido com sucesso\n'
         else:
             return 'Não há produtos no estoque\n'
@@ -149,17 +149,17 @@ class Main:
             print('Não há produtos em estoque\n')
 
     @staticmethod
-    def show_stock_movements(movements: list):
-        if len(movements) > 0:
+    def show_stock_movements():
+        if len(stock_movements) > 0:
             print('-' * 20)
             print('MOVIMENTAÇÕES NO ESTOQUE')
-            for m in movements:
+            for m in stock_movements:
                 # Ternary operator returns a textual value of movement's type
                 # to facilitate the understanding
                 type = 'entrada' if m.type else ' saída '
 
                 print(f'{m.date} | {type} | {m.quantity} | {m.product_name} | {m.responsible}')
-                if m == movements[len(movements) - 1]: print()
+                if m == stock_movements[len(stock_movements) - 1]: print()
         else:
             print('Não foram feitas movimentações no estoque')
 
