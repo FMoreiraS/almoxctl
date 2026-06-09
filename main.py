@@ -171,6 +171,13 @@ class Main:
             except ValueError:
                 print('Quantidade inválida')
 
+    # Searches for a product by name, ensuring that the product exists in stock
+    @staticmethod
+    def find_product(product_name):
+        product_to_found = None
+        for p in stored_products:
+            if p.name == product_name: product_to_found = p
+        return product_to_found
 
-if __name__ == '__main__':
-    Main.main()
+# Calls Main to run the system
+Main.main()
