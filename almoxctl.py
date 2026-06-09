@@ -31,6 +31,7 @@ class Main:
     stored_products = []
     global stock_movements
     stock_movements = []
+    
     @staticmethod
     def main():
         print('BEM-VINDO AO ALMOXCTL')
