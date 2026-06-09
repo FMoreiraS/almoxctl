@@ -64,6 +64,7 @@ class Main:
     @staticmethod
     def add_product(stored_products: list[Product]):
         success_msg = 'Produto adicionado com sucesso\n'
+
         # If there is any product in stock, the user can add more of it.
         if len(stored_products) > 0:
             option = input('Deseja adicionar um produto já existente?(s/n) ')
@@ -71,11 +72,10 @@ class Main:
                 Main.show_products(stored_products)
                 product_modified = None
                 product_name = input('Digite o nome do produto que será adicionado:')
-                # Ensuring the product exists in stock
-                for p in stored_products:
-                    if p.name == product_name:
-                        product_modified = p
-                if product_modified == None: return 'O produto indicado não está no estoque\n'
+                
+                product_modified = Main.find_product(product_name)
+                if product_modified == None:
+                    return 'O produto indicado não está no estoque\n'
                 
                 print('Digite a quantidade a ser adicionada:')
                 quantity = Main.validate_quantity()
@@ -105,10 +105,9 @@ class Main:
             print('Digite o nome de um dos produtos em estoque para removê-lo')
             product_name = input()
 
-            # Ensuring that the product exists in stock
-            for p in stored_products:
-                if p.name == product_name: product_to_remove = p
-            if product_to_remove == None: return 'O produto indicado não está no estoque\n'
+            product_to_remove = Main.find_product(product_name)
+            if product_to_remove == None:
+                return 'O produto indicado não está no estoque\n'
             
             current_quantity = product_to_remove.quantity_stored
             print('Digite a quantidade que deseja remover')
