@@ -51,13 +51,13 @@ class Main:
 
             match option:
                 case 1:
-                    print(Main.add_product(stored_products))
+                    print(Main.add_product())
                 case 2:
-                    print(Main.remove_product(stored_products))
+                    print(Main.remove_product())
                 case 3:
-                    Main.show_products(stored_products)
+                    Main.show_products()
                 case 4:
-                    Main.show_stock_movements(stock_movements)
+                    Main.show_stock_movements()
                 case 5:
                     print('Programa encerrado')
                     break
