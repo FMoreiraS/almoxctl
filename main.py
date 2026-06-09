@@ -9,9 +9,9 @@ class Product:
     def set_quantity(self, newQuantity):
         self.quantity_stored = newQuantity
 
-# Product entries and exits can be reduced to the same class. Exits, however,
+# Product inputs and outputs can be reduced to the same class. Exits, however,
 # must have a few extra attributes.
-# We can use optional parameters to define unique attributes of the stock exits.
+# We can use optional parameters to define unique attributes of the stock outputs.
 class Movement:
     def __init__(self, product_name, quantity, date, type=True, responsible=None):
         self.product_name = product_name
@@ -116,13 +116,14 @@ class Main:
                 return 'A quantidade em estoque é menor que a solicitada\n'
             elif quantity_to_remove == current_quantity:
                 stored_products.remove(product_to_remove)
+            
             product_to_remove.set_quantity(current_quantity - quantity_to_remove)
             Main.add_movement(stock_movements, product_name, quantity_to_remove, False)
             return 'Produto removido com sucesso\n'
         else:
             return 'Não há produtos no estoque\n'
 
-
+    # Records product inputs and outputs on a list for future audits
     @staticmethod
     def add_movement(movement_list: list, product_name, quantity, type=True):
         responsible_name = ' '
@@ -160,6 +161,8 @@ class Main:
         else:
             print('Não foram feitas movimentações no estoque')
 
+    # Auxiliary functions to assist add_product() and remove_product()
+    # Ensures that the user provides valid quantities
     @staticmethod
     def validate_quantity():
         quantity = 0
