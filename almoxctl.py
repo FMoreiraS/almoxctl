@@ -58,8 +58,6 @@ class Main:
                 case 5:
                     print('Programa encerrado')
                     break
-                # case _:
-                #     print('Opção inválida')
 
     @staticmethod
     def add_product(stored_products: list[Product]):
@@ -135,6 +133,7 @@ class Main:
         movement_to_add = Movement(product_name, quantity, current_date, type, responsible_name)
         movement_list.append(movement_to_add)
 
+    # Shows a list of products in stock at the moment
     @staticmethod
     def show_products(products: list):
         if len(products) > 0:
@@ -153,7 +152,7 @@ class Main:
             print('MOVIMENTAÇÕES NO ESTOQUE')
             for m in movements:
                 # Ternary operator returns a textual value of movement's type
-                # because the attribute is a boolean value
+                # to facilitate the understanding
                 type = 'entrada' if m.type else ' saída '
 
                 print(f'{m.date} | {type} | {m.quantity} | {m.product_name} | {m.responsible}')
