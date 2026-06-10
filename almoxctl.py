@@ -1,4 +1,4 @@
-# Class that made possible to get the current date and time
+# Class that made it possible to get the current date
 from datetime import datetime
 
 class Product:
