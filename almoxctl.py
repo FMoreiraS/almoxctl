@@ -24,6 +24,8 @@ class Movement:
         self.type = type
         self.responsible = responsible
 
+# The class that centralizes system activities. All the methods are static
+# because the main class should never be instantiated
 class Main:
     # It is useful to create these lists as global variables to reduce function
     # parameters, since the lists are needed in many places
