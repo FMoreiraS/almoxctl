@@ -162,7 +162,7 @@ class Main:
                 print(f'{m.date} | {type} | {m.quantity} | {m.product_name} | {m.responsible}')
                 if m == stock_movements[len(stock_movements) - 1]: print()
         else:
-            print('Não foram feitas movimentações no estoque')
+            print('Não foram feitas movimentações no estoque\n')
 
     # Auxiliary functions to assist add_product() and remove_product()
     # Ensures that the user provides valid quantities
